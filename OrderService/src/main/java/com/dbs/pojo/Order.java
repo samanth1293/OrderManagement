@@ -1,6 +1,5 @@
 package com.dbs.pojo;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -22,17 +22,16 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @Table(name="orders")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
-//@JsonIgnoreProperties(ignoreUnknown = true)
-public class Order implements Serializable {
-	
+public class Order  {
+
 	private Integer id;
-	
+
 	private String customerName;
-	
+
 	private Date orderedDate;
-	
+
 	private Address address;
-	
+
 	private List<OrderItem> orderItems;
 
 	@Id
@@ -46,7 +45,8 @@ public class Order implements Serializable {
 	}
 
 	@Column(name = "customer_name",nullable = false)
-	@NotEmpty(message = "Customer Name must be provide")
+	@NotNull(message = "Customer Name must be provide")
+	@Size(min=2, max=30)
 	public String getCustomerName() {
 		return customerName;
 	}
@@ -54,8 +54,8 @@ public class Order implements Serializable {
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-	
-	
+
+
 	@Column(name = "ordered_date",nullable = false)
 	public Date getOrderedDate() {
 		return orderedDate;
@@ -64,7 +64,7 @@ public class Order implements Serializable {
 	public void setOrderedDate(Date orderedDate) {
 		this.orderedDate = orderedDate;
 	}
-    
+
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name ="add_id")
 	public Address getAddress() {
@@ -74,19 +74,20 @@ public class Order implements Serializable {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-    
 
-	
+
+
+
 	@OneToMany(mappedBy = "order")
 	public List<OrderItem> getOrderItems() {
-		return orderItems;
+		return orderItems; 
 	}
 
-	public void setOrderItems(List<OrderItem> orderItems) {
-		this.orderItems = orderItems;
-	}
-	
-	
-	
+	public void setOrderItems(List<OrderItem> orderItems){ 
+		this.orderItems = orderItems; }
+
+
+
+
 
 }

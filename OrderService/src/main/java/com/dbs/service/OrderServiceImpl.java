@@ -17,9 +17,11 @@ public class OrderServiceImpl implements OrderService{
 	@Autowired
 	OrderRepository orderRepository;
 
-	@Autowired
+
+	@Autowired 
 	OrderItemClient orderItemClient;
-	
+
+
 	@Override
 	public List<Order> getOrders() {
 		return orderRepository.findAll();
@@ -29,9 +31,11 @@ public class OrderServiceImpl implements OrderService{
 	public Order saveOrder(Order order) {
 		order.setOrderedDate(new Date(System.currentTimeMillis()));
 		Order result=orderRepository.save(order);
-		OrderItem orderItem=order.getOrderItems().get(0);
+
+		OrderItem orderItem=order.getOrderItems().get(0); 
 		orderItem.setOrder(result);
 		orderItemClient.orderItemSave(orderItem);
+
 		return result;
 	}
 

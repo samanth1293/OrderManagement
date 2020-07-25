@@ -25,9 +25,10 @@ public class OrderController {
 	
 	
 
-	@PostMapping("/save")
+	@PostMapping(value ="/save",produces ="application/json")
 	public Order orderSave(@Valid @RequestBody Order order) 	{
-		return orderSave(order);
+		Order order2=orderService.saveOrder(order);
+		return order2;
 	}
 
 	@GetMapping(value="/retriveAll",produces ="application/json")
