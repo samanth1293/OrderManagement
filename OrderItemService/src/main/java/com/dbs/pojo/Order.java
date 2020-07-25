@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,9 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -45,6 +46,7 @@ public class Order implements Serializable {
 	}
 
 	@Column(name = "customer_name",nullable = false)
+	@NotEmpty(message = "Customer Name must be provide")
 	public String getCustomerName() {
 		return customerName;
 	}
@@ -62,8 +64,8 @@ public class Order implements Serializable {
 	public void setOrderedDate(Date orderedDate) {
 		this.orderedDate = orderedDate;
 	}
-
-	@OneToOne
+    
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name ="add_id")
 	public Address getAddress() {
 		return address;
@@ -73,6 +75,8 @@ public class Order implements Serializable {
 		this.address = address;
 	}
     
+
+	
 	@OneToMany(mappedBy = "order")
 	public List<OrderItem> getOrderItems() {
 		return orderItems;

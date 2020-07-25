@@ -12,9 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -40,6 +40,7 @@ public class OrderItem implements Serializable {
 	}
 	
 	@Column(name = "code",nullable = false)
+	@NotEmpty(message = "Product Code must be provide")
 	public String getProductCode() {
 		return productCode;
 	}
@@ -48,6 +49,7 @@ public class OrderItem implements Serializable {
 	}
 	
 	@Column(name = "name",nullable = false)
+	@NotEmpty(message = "Product Name must be provide")
 	public String getProductName() {
 		return productName;
 	}
@@ -56,6 +58,7 @@ public class OrderItem implements Serializable {
 	}
 	
 	@Column(name = "quantity",nullable = false)
+	@NotEmpty(message = "Quantity must be provide")
 	public Integer getQuantity() {
 		return quantity;
 	}
@@ -80,7 +83,10 @@ public class OrderItem implements Serializable {
 		this.order = order;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Order";
+	}
 
 
 }

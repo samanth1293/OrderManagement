@@ -2,6 +2,8 @@ package com.dbs.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +26,7 @@ public class OrderController {
 	
 
 	@PostMapping("/save")
-	public Order orderSave(@RequestBody Order order) 	{
+	public Order orderSave(@Valid @RequestBody Order order) 	{
 		return orderSave(order);
 	}
 

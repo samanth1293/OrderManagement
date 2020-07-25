@@ -14,7 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -46,6 +46,7 @@ public class Order implements Serializable {
 	}
 
 	@Column(name = "customer_name",nullable = false)
+	@NotEmpty(message = "Customer Name must be provide")
 	public String getCustomerName() {
 		return customerName;
 	}

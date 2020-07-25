@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="address")
@@ -32,6 +33,7 @@ public class Address {
 	}
 
 	@Column(name = "street",nullable = false)
+	@NotEmpty(message = "Street Name must be provide")
 	public String getStreet() {
 		return street;
 	}
@@ -41,6 +43,7 @@ public class Address {
 	}
 
 	@Column(name = "country",nullable = false)
+	@NotEmpty(message = "Country Name must be provide")
 	public String getCountry() {
 		return country;
 	}
@@ -49,7 +52,7 @@ public class Address {
 		this.country = country;
 	}
 
-	@Column(name = "postalcode",nullable = false)
+	@Column(name = "postalcode")
 	public Integer getPostalCode() {
 		return postalCode;
 	}
@@ -59,6 +62,7 @@ public class Address {
 	}
 
 	@Column(name = "number",nullable = false)
+	@NotEmpty(message = "Mobilenumber Name must be provide")
 	public Long getNumber() {
 		return number;
 	}

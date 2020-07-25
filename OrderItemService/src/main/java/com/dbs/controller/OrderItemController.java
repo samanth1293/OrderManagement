@@ -3,6 +3,8 @@ package com.dbs.controller;
 import java.sql.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +25,7 @@ public class OrderItemController {
 	OrderItemService orderItemService;
 
 	@PostMapping(value="/save")
-	public void orderItemSave(@RequestBody OrderItem orderItem) 	{
+	public void orderItemSave(@Valid @RequestBody OrderItem orderItem) 	{
 		orderItem.setCreationDate(new Date(System.currentTimeMillis()));
 		orderItemService.saveOrderItem(orderItem);
 	}
