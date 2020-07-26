@@ -9,7 +9,7 @@ import com.dbs.pojo.Order;
 @FeignClient(name= "ORDER-SERVICE")
 public interface OrderClient {
 	
-	@PostMapping(value = "/order/save")
+	@PostMapping(value = "/order/saveOrder")
 	public Order orderSave(@RequestBody Order order) ;
 
 }

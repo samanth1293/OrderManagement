@@ -10,5 +10,7 @@ public interface OrderItemService {
 	 
 	void saveOrderItem(OrderItem orderItem);
 	
+	OrderItem saveOrder(OrderItem orderItem);
+		
 	OrderItem findById(int id);
 }

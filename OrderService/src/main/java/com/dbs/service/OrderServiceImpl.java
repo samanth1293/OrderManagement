@@ -45,6 +45,13 @@ public class OrderServiceImpl implements OrderService{
 		return optional.isPresent()?optional.get():null;
 	}
 
+	@Override
+	public Order saveOrderByOrderItem(Order order) {
+		order.setOrderedDate(new Date(System.currentTimeMillis()));
+		Order result=orderRepository.save(order);
+		return result;
+	}
+
 
 
 }

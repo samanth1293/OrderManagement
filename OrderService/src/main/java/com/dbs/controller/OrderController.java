@@ -30,6 +30,12 @@ public class OrderController {
 		Order order2=orderService.saveOrder(order);
 		return order2;
 	}
+	
+	@PostMapping(value ="/saveOrder",produces ="application/json")
+	public Order orderSaveByOrderItem(@Valid @RequestBody Order order) 	{
+		Order result=orderService.saveOrderByOrderItem(order);
+		return result;
+	}
 
 	@GetMapping(value="/retriveAll",produces ="application/json")
 	public List<Order> retriveAll() {

@@ -24,10 +24,16 @@ public class OrderItemController {
 	@Autowired
 	OrderItemService orderItemService;
 
+	@PostMapping(value="/saveOrder")
+	public void orderItemByOwn(@Valid @RequestBody OrderItem orderItem) 	{
+		orderItem.setCreationDate(new Date(System.currentTimeMillis()));
+		orderItemService.saveOrderItem(orderItem);
+	}
+	
 	@PostMapping(value="/save")
 	public void orderItemSave(@Valid @RequestBody OrderItem orderItem) 	{
 		orderItem.setCreationDate(new Date(System.currentTimeMillis()));
-		orderItemService.saveOrderItem(orderItem);
+		orderItemService.saveOrder(orderItem);
 	}
 
 	@GetMapping(value = "/retriveAll",produces ="application/json")
